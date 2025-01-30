@@ -15,6 +15,12 @@ return new class extends Migration
     {
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
+            $table->integer('oc_number');
+            $table->integer('po_number');
+            $table->unsignedBigInteger('client_id'); // Foreign key column
+            $table->foreign('client_id')->references('id')->on('clinet')->onDelete('cascade');
+            $table->string('vendor_code');
+            $table->string('gst_info');
             $table->timestamps();
         });
     }
